@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Calculator</title>
+</head>
+<body>
+    <div class="container">
+        <div class="display"></div>
+        <div class="keys">
+            <div class="op" onclick="empty()">CE</div>
+            <div class="op" onclick="insert('&#40')">&#40</div>
+            <div class="op" onclick="insert('&#41')">&#41</div>
+            <div class="op" onclick="del()">&larr;</div>
+            <div class="op" onclick="insert(' + ')">+</div>
+            <div onclick="insert(1)">1</div>
+            <div onclick="insert(2)">2</div>
+            <div onclick="insert(3)">3</div>
+            <div class="op" onclick="insert(' - ')">-</div>
+            <div onclick="insert(4)">4</div>
+            <div onclick="insert(5)">5</div>
+            <div onclick="insert(6)">6</div>
+            <div class="op" onclick="insert(' * ')">x</div>
+            <div onclick="insert(7)">7</div>
+            <div onclick="insert(8)">8</div>
+            <div onclick="insert(9)">9</div>
+            <div class="op" onclick="insert(' / ')">/</div>
+            <div class="op" onclick="insert(' . ')">.</div>
+            <div onclick="insert(0)">0</div>
+            <div class="op" onclick="calc()">=</div>
+        </div>
+    </div>
+
+    <script>
+        let display = document.querySelector(".display");
+        let insert = (key) =>{
+            display.innerHTML += key;
+        }
+        let empty = ()=>{
+            display.innerHTML = "";
+        }
+        let del = ()=>{
+            if(display.innerHTML == "Math Error") empty();
+            display.innerHTML = display.textContent.slice(0,display.textContent.length-1);
+        }
+
+        let calc = ()=>{
+            let res = eval(display.textContent);
+            display.innerHTML = (res == Infinity || Number.isNaN(res))? "Math Error": res;
+        }
+    </script>
+</body>
+</html>
